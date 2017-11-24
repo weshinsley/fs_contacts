@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Filling Station - Mailing Lists</string>
+    <string name="sign_up_to_filling_station_mailing_list">Sign up to Filling Station Mailing List</string>
+    <string name="sign_up_to_local_house_of_prayer_mailing_list">Sign up to Local Houses of Prayer Mailing List</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="thank_you_text">Thank You</string>
+    <string name="your_e_mail_address">Your E-mail Address</string>
+    <string name="your_name">Your Name</string>
+    <string name="no_list_clicked">Please select at least one mailing list</string>
+    <string name="no_name">Please give your name</string>
+    <string name="bad_email">Please give a valid e-mail address</string>
+</resources>

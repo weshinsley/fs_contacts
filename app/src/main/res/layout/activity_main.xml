@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.teapotrecords.fscontacts.MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="10dp">
+        <TableLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <TableRow>
+                <EditText
+                    android:id="@+id/nameText"
+                    android:layout_weight=".70"
+                    android:minWidth="400dp"
+                    android:layout_width="match_parent"
+                    android:textSize="9pt"
+                    android:hint="@string/your_name"
+                    android:text=""
+                    android:inputType="textPersonName"/>
+            </TableRow>
+            <TableRow>
+                <EditText
+                    android:id="@+id/emailText"
+                    android:layout_weight=".70"
+                    android:minWidth="400dp"
+                    android:hint="@string/your_e_mail_address"
+                    android:layout_width="match_parent"
+                    android:textSize="9pt"
+                    android:text=""
+                    android:inputType="textEmailAddress"/>
+            </TableRow>
+        </TableLayout>
+        <Space android:layout_width="1dp" android:layout_height="10dp" />
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_height="wrap_content"
+                      android:layout_width="match_parent"
+                      android:gravity="center"
+            >
+            <TableLayout android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:layout_gravity="center">
+                <CheckBox android:id="@+id/fsSignup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:paddingStart="20dp"
+                          android:paddingLeft="20dp"
+                          android:textSize="10pt"
+                          android:button="@drawable/checkbox_selector"
+                          android:text="@string/sign_up_to_filling_station_mailing_list"
+                    />
+                <TextView android:width="50dp"/>
+
+                <CheckBox android:id="@+id/lhopSignup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="10pt"
+                          android:paddingStart="20dp"
+                          android:paddingLeft="20dp"
+                          android:button="@drawable/checkbox_selector"
+                          android:text="@string/sign_up_to_local_house_of_prayer_mailing_list"
+                    />
+        </TableLayout>
+            <Space android:layout_width="80dp" android:layout_height="1dp"/>
+            <Button android:id="@+id/addButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="2"
+                    android:scaleY="2"
+
+                    android:text="@string/sign_up"
+
+                ><requestFocus /></Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+

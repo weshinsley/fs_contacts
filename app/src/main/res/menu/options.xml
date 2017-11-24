@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/send_mail" android:title="Send Admin Mail" />
+  <item android:id="@+id/clear_all" android:title="Clear Records" />
+  <item android:id="@+id/about" android:title="About App" />
+</menu>
