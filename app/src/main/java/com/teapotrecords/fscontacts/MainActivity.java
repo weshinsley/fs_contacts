@@ -8,9 +8,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.text.style.RelativeSizeSpan;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -18,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -32,11 +36,12 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
-  static String version = "1.0";
+  static String version = "1.1";
   static String author = "wes.hinsley@gmail.com";
   static String copyright = "(C) 2017 Teapot Records";
-
+  float orig_brightness = 1.0f;
   Toast currentToast = null;
+  MyTimer my_timer;
 
   public static boolean validEmail(String e) {
     return ((e != null) &&
@@ -109,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     } catch (Exception e) {
       bigToast(c,"Mail not setup on this android", Toast.LENGTH_LONG);
     }
-
   }
 
   @Override
@@ -192,10 +196,43 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
   }
+
+  class MyTimer extends CountDownTimer {
+    MyTimer() {
+      super(60000, 1000);
+    }
+    public void onFinish() {
+      WindowManager.LayoutParams lp = getWindow().getAttributes();
+      lp.screenBrightness=0.1f;
+
+
+      getWindow().setAttributes(lp);
+    }
+    @Override
+    public  void onTick(long millisUntilFinished) {
+
+    }
+  }
+
+  @Override
+  public void onUserInteraction() {
+    WindowManager.LayoutParams lp = getWindow().getAttributes();
+    lp.screenBrightness=orig_brightness;
+    getWindow().setAttributes(lp);
+    if (my_timer!=null) {
+      my_timer.cancel();
+      my_timer.start();
+    }
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    my_timer = new MyTimer();
     setContentView(R.layout.activity_main);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    orig_brightness = getWindow().getAttributes().screenBrightness;
+
 
     final Button signUp = findViewById(R.id.addButton);
     signUp.setOnClickListener(new OnClickListener() {
@@ -224,5 +261,19 @@ public class MainActivity extends AppCompatActivity {
         }
       }
     });
+
+    TextWatcher tw = new TextWatcher() {
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+        onUserInteraction();
+      }
+      public void afterTextChanged(Editable s) {}
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    };
+
+    final EditText et = findViewById(R.id.emailText);
+    et.addTextChangedListener(tw);
+    final EditText et2 = findViewById(R.id.nameText);
+    et2.addTextChangedListener(tw);
+
   }
 }
